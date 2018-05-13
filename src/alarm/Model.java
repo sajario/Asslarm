@@ -1,7 +1,8 @@
-package clock;
+package alarm;
 
 import java.util.Calendar;
 import java.util.Observable;
+import java.time.*;
 //import java.util.GregorianCalendar;
 
 public class Model extends Observable {
