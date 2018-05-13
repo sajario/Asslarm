@@ -1,4 +1,4 @@
-package clock;
+package alarm;
 
 import java.awt.*;
 import java.awt.event.*;
