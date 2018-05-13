@@ -18,6 +18,7 @@ public class Controller {
         listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 model.update(String.valueOf(model.alarmin));
+                
                 if(String.valueOf(model.hour).length() == 1){
                     view.getHour().setText("0"+String.valueOf(model.hour));
                 } else {

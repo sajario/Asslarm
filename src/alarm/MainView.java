@@ -48,12 +48,13 @@ public class MainView extends javax.swing.JFrame implements Observer {
         lblNext = new javax.swing.JLabel();
         lblNextAlarm = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mAlarm = new javax.swing.JMenu();
         muAdd = new javax.swing.JMenuItem();
         muEdit = new javax.swing.JMenuItem();
         muRemove = new javax.swing.JMenuItem();
+        mExport = new javax.swing.JMenu();
         muAll = new javax.swing.JMenuItem();
-        muExport = new javax.swing.JMenu();
+        muExport = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,7 +114,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         lblNext.setText("Next Alarm");
 
         lblNextAlarm.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
-        lblNextAlarm.setText("01/01/1900 00:01:00");
+        lblNextAlarm.setText("01/01/1900 00:01");
 
         javax.swing.GroupLayout pNextAlarmLayout = new javax.swing.GroupLayout(pNextAlarm);
         pNextAlarm.setLayout(pNextAlarmLayout);
@@ -163,11 +164,11 @@ public class MainView extends javax.swing.JFrame implements Observer {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Alarms");
-        jMenu1.setToolTipText("");
+        mAlarm.setText("Alarms");
+        mAlarm.setToolTipText("");
 
         muAdd.setText("Add");
-        jMenu1.add(muAdd);
+        mAlarm.add(muAdd);
 
         muEdit.setText("Edit");
         muEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -175,18 +176,22 @@ public class MainView extends javax.swing.JFrame implements Observer {
                 muEditActionPerformed(evt);
             }
         });
-        jMenu1.add(muEdit);
+        mAlarm.add(muEdit);
 
         muRemove.setText("Remove");
-        jMenu1.add(muRemove);
+        mAlarm.add(muRemove);
+
+        jMenuBar1.add(mAlarm);
+
+        mExport.setText("Export");
 
         muAll.setText("View All");
-        jMenu1.add(muAll);
+        mExport.add(muAll);
 
-        jMenuBar1.add(jMenu1);
+        muExport.setText("Export iCal");
+        mExport.add(muExport);
 
-        muExport.setText("Export");
-        jMenuBar1.add(muExport);
+        jMenuBar1.add(mExport);
 
         setJMenuBar(jMenuBar1);
 
@@ -248,15 +253,16 @@ public class MainView extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel clockHour;
     private javax.swing.JLabel clockMin;
     private javax.swing.JLabel clockSec;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblNext;
     private javax.swing.JLabel lblNextAlarm;
+    private javax.swing.JMenu mAlarm;
+    private javax.swing.JMenu mExport;
     private javax.swing.JMenuItem muAdd;
     private javax.swing.JMenuItem muAll;
     private javax.swing.JMenuItem muEdit;
-    private javax.swing.JMenu muExport;
+    private javax.swing.JMenuItem muExport;
     private javax.swing.JMenuItem muRemove;
     private javax.swing.JPanel pClock;
     private javax.swing.JPanel pContain;
