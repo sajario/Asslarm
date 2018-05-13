@@ -28,12 +28,28 @@ public class View implements Observer {
         
         Container pane = frame.getContentPane();
         
+        JToolBar jToolBar1 = new javax.swing.JToolBar();
+        JButton btnAdd = new javax.swing.JButton("Add");
+        JButton btnEdit = new javax.swing.JButton("Edit");
+        JButton btnRemove = new javax.swing.JButton("Remove");
+        JButton btnExport = new javax.swing.JButton("Export");
+        jToolBar1.add(btnAdd);
+        jToolBar1.add(btnEdit);
+        jToolBar1.add(btnRemove);
+        jToolBar1.add(btnExport);
+        panel.add(jToolBar1);
+        
+        jToolBar1.setRollover(true);
+        
+        
+        
+        /*
         JButton button = new JButton("Button 1 (PAGE_START)");
         pane.add(button, BorderLayout.PAGE_START);
-         
+         */
         panel.setPreferredSize(new Dimension(200, 200));
         pane.add(panel, BorderLayout.CENTER);
-         
+         /*
         button = new JButton("Button 3 (LINE_START)");
         pane.add(button, BorderLayout.LINE_START);
          
@@ -42,7 +58,7 @@ public class View implements Observer {
          
         button = new JButton("5 (LINE_END)");
         pane.add(button, BorderLayout.LINE_END);
-        
+        */
         // End of borderlayout code
         
         frame.pack();
