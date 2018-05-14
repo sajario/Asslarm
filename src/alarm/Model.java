@@ -11,14 +11,17 @@ import queuemanager.PriorityQueue;
 
 //import java.util.GregorianCalendar;
 
+/**
+ *
+ * @author Sara
+ */
+
 public class Model extends Observable {
        
     DateTimeFormatter fmtDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     DateTimeFormatter fmtTime = DateTimeFormatter.ofPattern("HH:mm");
     DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    /*TEST*/
     LocalDateTime now  = LocalDateTime.now();
-        /*Test End*/
             
     int hour = 0;
     int minute = 0;
@@ -26,15 +29,21 @@ public class Model extends Observable {
     String datelbl, alarmin;
     int oldSecond = 0;
     
-    public Model(String al) {
-        update(al);
+    /**
+     *
+     * @param al
+     */
+    public Model() {
+        
     }
     
+    /**
+     *
+     * @param al
+     */
     public void update(String al) {
         LocalDateTime now = LocalDateTime.now();
-        
-            
-        
+
         datelbl = now.format(fmtDate);
         hour = now.getHour();
         minute = now.getMinute();

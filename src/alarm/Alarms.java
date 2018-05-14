@@ -13,28 +13,55 @@ import java.time.LocalDateTime;
  */
 public class Alarms {
    
-
+    /**
+     *
+     */
     protected String datetimeTXT;
+
+    /**
+     *
+     */
     protected LocalDateTime datetime;
 
+    /**
+     *
+     * @param dtt
+     * @param dt
+     */
     public Alarms(String dtt, LocalDateTime dt) {
         this.datetimeTXT = dtt;
         this.datetime = dt;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDTT() {
         return datetimeTXT;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getDT() {
         return datetime;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return getDTT();
     }  
     
+    /**
+     *
+     * @return
+     */
     public LocalDateTime toDate() {
         return getDT();
     } 
