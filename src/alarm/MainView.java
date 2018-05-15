@@ -41,6 +41,8 @@ public class MainView extends javax.swing.JFrame implements Observer {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         titleAction = new javax.swing.JLabel();
+        lblChoose = new javax.swing.JLabel();
+        comboAlarm = new javax.swing.JComboBox<>();
         panDate = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -58,6 +60,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         panBtns = new javax.swing.JPanel();
         btnAction = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         panel = new javax.swing.JPanel();
         pContain = new javax.swing.JPanel();
         pClock = new javax.swing.JPanel();
@@ -74,15 +77,17 @@ public class MainView extends javax.swing.JFrame implements Observer {
         mAlarm = new javax.swing.JMenu();
         muAdd = new javax.swing.JMenuItem();
         muEdit = new javax.swing.JMenuItem();
-        muRemove = new javax.swing.JMenuItem();
-        mExport = new javax.swing.JMenu();
-        muAll = new javax.swing.JMenuItem();
-        muExport = new javax.swing.JMenuItem();
+        muExport = new javax.swing.JMenu();
 
         jPanel2.setMinimumSize(new java.awt.Dimension(20, 20));
 
         titleAction.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
         titleAction.setText("Add Alarm");
+
+        lblChoose.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+        lblChoose.setText("or choose existing alarm >>");
+
+        comboAlarm.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -90,14 +95,21 @@ public class MainView extends javax.swing.JFrame implements Observer {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleAction, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(titleAction)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblChoose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboAlarm, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleAction, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleAction, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblChoose)
+                    .addComponent(comboAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -217,7 +229,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
             .addGroup(panTimeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -238,16 +250,20 @@ public class MainView extends javax.swing.JFrame implements Observer {
         btnCancel.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         btnCancel.setText("Cancel");
 
+        btnDelete.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+
         javax.swing.GroupLayout panBtnsLayout = new javax.swing.GroupLayout(panBtns);
         panBtns.setLayout(panBtnsLayout);
         panBtnsLayout.setHorizontalGroup(
             panBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panBtnsLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAction, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panBtnsLayout.setVerticalGroup(
             panBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +271,8 @@ public class MainView extends javax.swing.JFrame implements Observer {
                 .addGap(0, 22, Short.MAX_VALUE)
                 .addGroup(panBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel)
-                    .addComponent(btnAction)))
+                    .addComponent(btnAction)
+                    .addComponent(btnDelete)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -410,35 +427,15 @@ public class MainView extends javax.swing.JFrame implements Observer {
         mAlarm.setToolTipText("");
 
         muAdd.setText("Add");
-        muAdd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                muAddMouseReleased(evt);
-            }
-        });
         mAlarm.add(muAdd);
 
         muEdit.setText("Edit");
-        muEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                muEditMouseReleased(evt);
-            }
-        });
         mAlarm.add(muEdit);
-
-        muRemove.setText("Remove");
-        mAlarm.add(muRemove);
 
         jMenuBar1.add(mAlarm);
 
-        mExport.setText("Export");
-
-        muAll.setText("View All");
-        mExport.add(muAll);
-
-        muExport.setText("Export iCal");
-        mExport.add(muExport);
-
-        jMenuBar1.add(mExport);
+        muExport.setText("Export");
+        jMenuBar1.add(muExport);
 
         setJMenuBar(jMenuBar1);
 
@@ -456,24 +453,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
-    private void muAddMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_muAddMouseReleased
-        diaAction.pack();
-        titleAction.setText("Add Alarm");
-        btnAction.setText("Add");
-        diaAction.setVisible(true);
-        diaAction.setAlwaysOnTop(true);
-    }//GEN-LAST:event_muAddMouseReleased
-
-    private void muEditMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_muEditMouseReleased
-        diaAction.pack();
-        titleAction.setText("Edit Alarm");
-        btnAction.setText("Edit");
-        diaAction.setVisible(true);
-        diaAction.setAlwaysOnTop(true);
-        
-    }//GEN-LAST:event_muEditMouseReleased
- 
+     
     /**
      * @param args the command line arguments
      */
@@ -501,7 +481,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         }
         //</editor-fold>
         //</editor-fold>
-
+            
         /* Create and display the form */
        /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -513,9 +493,11 @@ public class MainView extends javax.swing.JFrame implements Observer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAction;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JLabel clockHour;
     private javax.swing.JLabel clockMin;
     private javax.swing.JLabel clockSec;
+    private javax.swing.JComboBox<String> comboAlarm;
     private javax.swing.JDialog diaAction;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -527,16 +509,14 @@ public class MainView extends javax.swing.JFrame implements Observer {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel lblChoose;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblNext;
     private javax.swing.JLabel lblNextAlarm;
     private javax.swing.JMenu mAlarm;
-    private javax.swing.JMenu mExport;
     private javax.swing.JMenuItem muAdd;
-    private javax.swing.JMenuItem muAll;
     private javax.swing.JMenuItem muEdit;
-    private javax.swing.JMenuItem muExport;
-    private javax.swing.JMenuItem muRemove;
+    private javax.swing.JMenu muExport;
     private javax.swing.JPanel pClock;
     private javax.swing.JPanel pContain;
     private javax.swing.JPanel pNextAlarm;
@@ -577,19 +557,29 @@ public class MainView extends javax.swing.JFrame implements Observer {
     public javax.swing.JLabel gettitleAction(){
         return titleAction;
     }
+    
+    /*I can't figure out how to simply return the panel and access components within it so hey a buck of seperate return statements...*/
+    
+    public javax.swing.JPanel getPanel(){
+        return panel;
+    }
 
-    public javax.swing.JButton getBtnAction(){
+    public javax.swing.JButton getbtnAction(){
         return btnAction;
     }
 
-    public javax.swing.JButton getBtnCancel(){
+    public javax.swing.JButton getbtnCancel(){
         return btnCancel;
     }
     
-    public javax.swing.JTextField getTxtDD(){
+    public javax.swing.JButton getbtnDelete(){
+        return btnDelete;
+    }
+    
+    public javax.swing.JTextField gettxtDD(){
         return txtDD;
     }
-    public javax.swing.JTextField getTxtHH(){
+    public javax.swing.JTextField gettxtHH(){
         return txtHH;
     }
     public javax.swing.JTextField gettxtMM(){
@@ -598,11 +588,35 @@ public class MainView extends javax.swing.JFrame implements Observer {
     public javax.swing.JTextField gettxtMin(){
         return txtMin;
     }
-    public javax.swing.JTextField getTxtYY(){
+    public javax.swing.JTextField gettxtYY(){
         return txtYYYY;
     }
     
+    public javax.swing.JDialog getActionDi(){
+        return diaAction;
+    }
+    
+    public javax.swing.JMenuItem getmuAdd(){
+        return muAdd;
+    }
+    
+    public javax.swing.JMenuItem getmuEdit(){
+        return muEdit;
+    }
+    
+    public javax.swing.JMenuItem getmuExport(){
+        return muExport;
+    }
+    
+    public javax.swing.JComboBox getcomboAlarm(){
+        return comboAlarm;
+    }
+    
+    public javax.swing.JLabel getlblChoose(){
+        return lblChoose;
+    }
 
+    
     public void update(Observable o, Object data) { 
 
     }

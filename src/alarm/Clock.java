@@ -26,7 +26,7 @@ public class Clock {
         /*DATE TIME TESTING*/
         PriorityQueue<Alarms> q;
         q = new HeapPQ<>(15);
-        DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        /*DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         DateTimeFormatter fmtTime = DateTimeFormatter.ofPattern("HH:mm:ss");
         long start = (System.currentTimeMillis()/1000)/60;
         int change = (int)start;
@@ -34,7 +34,7 @@ public class Clock {
         System.out.println(change);
 
         
-      /*  
+       
         int nowsec = now.toLocalTime().toSecondOfDay();
         
        
@@ -44,7 +44,7 @@ public class Clock {
         String input2 = "23:59:00";
         String input3 = "00:00:01";
 
-        
+        /*
         
        // LocalTime time = LocalTime.parse(input, fmtDateTime);
         LocalDateTime time = LocalDateTime.parse(input,fmtDateTime);
@@ -67,8 +67,8 @@ public class Clock {
                 }
             
             
-        }
-        */
+        }*/
+        
        
         //String head = q.head().getDTT();
        
