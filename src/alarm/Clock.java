@@ -73,7 +73,7 @@ public class Clock {
         //String head = q.head().getDTT();
        
 
-        Model model = new Model();
+        Model model = new Model(q);
         //View view = new View(model);
         MainView view = new MainView(model);
         

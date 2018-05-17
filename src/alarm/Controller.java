@@ -26,96 +26,20 @@ public class Controller {
     MainView view;
     PriorityQueue<Alarms> heap;
     
+    
+    
     /**
      *
      * @param q
      * @param m
      * @param v
-     */
+     */    
     public Controller(PriorityQueue<Alarms> q,Model m, MainView v) {
         model = m;
         view = v;
         heap = q;
         
-        /*Alarm Test Data*/
-        boolean checkFormat, checkFormat1, checkFormat2;
-        String StringCheck = "[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}[ ]{1}([01]?[0-9]|2[0-3]):[0-5][0-9]";
-        DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        DateTimeFormatter fmtTime = DateTimeFormatter.ofPattern("HH:mm:ss");
-        
-        LocalDateTime now  = LocalDateTime.now();
-        
-        String input = "20/05/2018 27:59";
-        String input1 = "20/05/2018 09:32";
-        String input2 = "20/05/2018 12:32";
-        checkFormat = input.matches(StringCheck);
-        checkFormat1 = input1.matches(StringCheck);
-        checkFormat2 = input2.matches(StringCheck);
-       
-        if (checkFormat) {
-            LocalDateTime alarm = LocalDateTime.parse(input,fmtDateTime);                
-            if (LocalDateTime.now().isAfter(alarm)){
-                {System.out.println("Cannot Set alarm before now");} 
-            } else {
-                long minutesBetween = MINUTES.between(now, alarm);
-                int PQ = (int)minutesBetween;
-                PQ = -PQ;
-                //System.out.println(PQ);
-                Alarms larmin = new Alarms(input,alarm);
-                try {
-                        q.add(larmin, PQ);
-
-                } catch (QueueOverflowException e) {
-                    System.out.println("Add operation failed: " + e);
-                } 
-            }
-        } else {
-             System.out.println("Could not add "+input+" as this is not a valid Date or Time.");
-         }    
-        
-        if (checkFormat1) {
-            LocalDateTime alarm1 = LocalDateTime.parse(input1,fmtDateTime);
-            if (LocalDateTime.now().isAfter(alarm1)){
-                {System.out.println("Cannot Set alarm before now");} 
-            } else {
-                long minutesBetween = MINUTES.between(now, alarm1);
-                int PQ = (int)minutesBetween;
-                PQ = -PQ;
-                //System.out.println(PQ);
-                Alarms larmin1 = new Alarms(input1,alarm1);
-                try {
-                        q.add(larmin1, PQ);
-                    } catch (QueueOverflowException e) {
-                        System.out.println("Add operation failed: " + e);
-                    } 
-            }
-        } else {
-             System.out.println("Could not add "+input1+" as this is not a valid Date or Time.");
-         }
-        
-         if (checkFormat2) {
-            LocalDateTime alarm2 = LocalDateTime.parse(input2,fmtDateTime);
-            if (LocalDateTime.now().isAfter(alarm2)){
-                {System.out.println("Cannot Set alarm before now");} 
-            } else {
-                long minutesBetween = MINUTES.between(now, alarm2);
-                int PQ = (int)minutesBetween;
-                PQ = -PQ;
-                //System.out.println(PQ);
-                Alarms larmin2 = new Alarms(input2,alarm2);
-                try {
-                        q.add(larmin2, PQ);
-                    } catch (QueueOverflowException e) {
-                        System.out.println("Add operation failed: " + e);
-                    } 
-            }
-         } else {
-             System.out.println("Could not add "+input2+" as this is not a valid Date or Time.");
-         }
-        /*TEST END*/
-        String str = "";
-        String strarray[] = heap.toString().split(" ") ;
-        
+        model.testData();
         
         listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -154,17 +78,40 @@ public class Controller {
             
         };
         
+        
         actionpress = new ActionListener() {
             
             public void actionPerformed(ActionEvent ae) {
+                String tf = view.gettxtDD().getText()+"/"+view.gettxtMM().getText()+"/"+ view.gettxtYY().getText()+" "+view.gettxtHH().getText()+":"+view.gettxtMin().getText();
+                boolean checkFormat = model.chkUserInput(tf);
                 
                 if (null != ae.getActionCommand())switch (ae.getActionCommand()) {
                     case "Add":
-                        
+                        if(checkFormat){
+                            model.addAlarm(tf);
+                            view.getdiaPopup().pack();
+                            view.gettitlePopup().setText("Alarm Added");
+                            view.getlblPopp().setText("<HTML>Phew it worked! Your alarm has now been added.<HTML>");
+                            view.getdiaPopup().setVisible(true);
+                            
+                        } else {
+                            view.getdiaPopup().pack();
+                            view.gettitlePopup().setText("Error has occurred!");
+                            view.getlblPopp().setText("<HTML>I'm afraid you have not filled out all the right information.  The alarm has to be in the future.  The time has to be 24hr format.  I'll clear the form for you and you can start again.<HTML>");
+                            view.getdiaPopup().setVisible(true);
+                        }
                         break;
                     case "Edit":
                         
+                        {
+                            try {
+                                model.heaptoArray();
+                            } catch (QueueUnderflowException ex) {
+                                //add something
+                            }
+                        }
                         break;
+                    
                     case "Cancel":
                         view.gettxtDD().setText("");
                         view.gettxtHH().setText("");
@@ -174,7 +121,18 @@ public class Controller {
                         view.getbtnDelete().setVisible(false);
                         view.getActionDi().setVisible(false);
                         break;
+                    
                     case "Delete":
+                        
+                        break;
+                    
+                    case "Ok":
+                        view.getdiaPopup().setVisible(false);
+                        view.gettxtDD().setText("");
+                        view.gettxtHH().setText("");
+                        view.gettxtMin().setText("");
+                        view.gettxtMM().setText("");
+                        view.gettxtYY().setText("");
                         
                         break;
                     default:
@@ -250,6 +208,10 @@ public class Controller {
                         
                         break;
                     
+                    case "Ok":
+                        view.getdiaPopup().setVisible(false);
+                        break;
+                        
                     default:
                         break;
                 }                 
@@ -260,6 +222,7 @@ public class Controller {
         view.getbtnAction().addActionListener(actionpress);
         view.getbtnCancel().addActionListener(actionpress);
         view.getbtnDelete().addActionListener(actionpress);
+        view.getbtnOK().addActionListener(actionpress);
         view.getmuEdit().addActionListener(menuitem);
         view.getmuAdd().addActionListener(menuitem);
         view.getmuExport().addActionListener(menuitem);

@@ -61,6 +61,11 @@ public class MainView extends javax.swing.JFrame implements Observer {
         btnAction = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        diaError = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        btnErrorOK = new javax.swing.JButton();
+        lblPopup = new javax.swing.JLabel();
+        titlePopup = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
         pContain = new javax.swing.JPanel();
         pClock = new javax.swing.JPanel();
@@ -315,6 +320,63 @@ public class MainView extends javax.swing.JFrame implements Observer {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        diaError.setTitle("Hey there!!");
+        diaError.setAlwaysOnTop(true);
+        diaError.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        diaError.setMaximumSize(new java.awt.Dimension(80, 40));
+        diaError.setMinimumSize(new java.awt.Dimension(80, 40));
+
+        btnErrorOK.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        btnErrorOK.setText("Ok");
+
+        lblPopup.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        lblPopup.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblPopup.setText("Error Details");
+        lblPopup.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        titlePopup.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 24)); // NOI18N
+        titlePopup.setText("An error has occurred!");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnErrorOK, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPopup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(titlePopup)
+                        .addGap(0, 142, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titlePopup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPopup, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(btnErrorOK)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout diaErrorLayout = new javax.swing.GroupLayout(diaError.getContentPane());
+        diaError.getContentPane().setLayout(diaErrorLayout);
+        diaErrorLayout.setHorizontalGroup(
+            diaErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        diaErrorLayout.setVerticalGroup(
+            diaErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblDate.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
@@ -481,7 +543,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         }
         //</editor-fold>
         //</editor-fold>
-            
+           
         /* Create and display the form */
        /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -494,11 +556,13 @@ public class MainView extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton btnAction;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnErrorOK;
     private javax.swing.JLabel clockHour;
     private javax.swing.JLabel clockMin;
     private javax.swing.JLabel clockSec;
     private javax.swing.JComboBox<String> comboAlarm;
     private javax.swing.JDialog diaAction;
+    private javax.swing.JDialog diaError;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -507,12 +571,14 @@ public class MainView extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblChoose;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblNext;
     private javax.swing.JLabel lblNextAlarm;
+    private javax.swing.JLabel lblPopup;
     private javax.swing.JMenu mAlarm;
     private javax.swing.JMenuItem muAdd;
     private javax.swing.JMenuItem muEdit;
@@ -527,6 +593,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel sep1;
     private javax.swing.JLabel sep2;
     private javax.swing.JLabel titleAction;
+    private javax.swing.JLabel titlePopup;
     private javax.swing.JTextField txtDD;
     private javax.swing.JTextField txtHH;
     private javax.swing.JTextField txtMM;
@@ -558,7 +625,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         return titleAction;
     }
     
-    /*I can't figure out how to simply return the panel and access components within it so hey a buck of seperate return statements...*/
+    /*I can't figure out how to simply return the panel and access components within it so hey a bunch of seperate return statements...*/
     
     public javax.swing.JPanel getPanel(){
         return panel;
@@ -574,6 +641,10 @@ public class MainView extends javax.swing.JFrame implements Observer {
     
     public javax.swing.JButton getbtnDelete(){
         return btnDelete;
+    }
+    
+    public javax.swing.JButton getbtnOK(){
+        return btnErrorOK;
     }
     
     public javax.swing.JTextField gettxtDD(){
@@ -596,6 +667,10 @@ public class MainView extends javax.swing.JFrame implements Observer {
         return diaAction;
     }
     
+    public javax.swing.JDialog getdiaPopup(){
+        return diaError;
+    }
+    
     public javax.swing.JMenuItem getmuAdd(){
         return muAdd;
     }
@@ -616,8 +691,15 @@ public class MainView extends javax.swing.JFrame implements Observer {
         return lblChoose;
     }
 
+    public javax.swing.JLabel getlblPopp(){
+        return lblPopup;
+    }
+    
+    public javax.swing.JLabel gettitlePopup(){
+        return titlePopup;
+    }
     
     public void update(Observable o, Object data) { 
-
+        
     }
 }
