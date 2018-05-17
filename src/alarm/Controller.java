@@ -204,6 +204,9 @@ public class Controller {
                                  
                             } else {
                                 
+                                obj = "";
+                                tf = "";
+                                
                                 view.getActionDi().setVisible(false);
                             }
 
@@ -254,6 +257,11 @@ public class Controller {
                     
                     view.getcomboAlarm().setVisible(false);
                     view.getlblChoose().setVisible(false);
+                    view.gettxtDD().setText("");
+                    view.gettxtHH().setText("");
+                    view.gettxtMin().setText("");
+                    view.gettxtMM().setText("");
+                    view.gettxtYY().setText("");
                 } else {
                     view.getcomboAlarm().setVisible(true);
                     view.getlblChoose().setVisible(true);
