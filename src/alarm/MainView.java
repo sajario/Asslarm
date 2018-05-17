@@ -8,6 +8,7 @@ package alarm;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +20,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
     
     /**
      * Creates new form main
+     * @param model
      */
     public MainView(Model model) {
         Model m = model;
@@ -35,6 +37,35 @@ public class MainView extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        diaAction = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        titleAction = new javax.swing.JLabel();
+        lblChoose = new javax.swing.JLabel();
+        comboAlarm = new javax.swing.JComboBox<>();
+        panDate = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        txtMM = new javax.swing.JTextField();
+        txtDD = new javax.swing.JTextField();
+        txtYYYY = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        panTime = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        txtHH = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtMin = new javax.swing.JTextField();
+        panBtns = new javax.swing.JPanel();
+        btnAction = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        diaError = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        btnErrorOK = new javax.swing.JButton();
+        lblPopup = new javax.swing.JLabel();
+        titlePopup = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
         pContain = new javax.swing.JPanel();
         pClock = new javax.swing.JPanel();
@@ -48,12 +79,303 @@ public class MainView extends javax.swing.JFrame implements Observer {
         lblNext = new javax.swing.JLabel();
         lblNextAlarm = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mAlarm = new javax.swing.JMenu();
         muAdd = new javax.swing.JMenuItem();
         muEdit = new javax.swing.JMenuItem();
-        muRemove = new javax.swing.JMenuItem();
-        muAll = new javax.swing.JMenuItem();
         muExport = new javax.swing.JMenu();
+
+        jPanel2.setMinimumSize(new java.awt.Dimension(20, 20));
+
+        titleAction.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
+        titleAction.setText("Add Alarm");
+
+        lblChoose.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+        lblChoose.setText("or choose existing alarm >>");
+
+        comboAlarm.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleAction)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblChoose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboAlarm, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleAction, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblChoose)
+                    .addComponent(comboAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel4.setText("Enter Date (dd/mm/yyyy)");
+
+        txtMM.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        txtMM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMM.setToolTipText("Month as MM");
+
+        txtDD.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        txtDD.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDD.setToolTipText("Day as DD");
+
+        txtYYYY.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        txtYYYY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtYYYY.setToolTipText("Year as YYYY");
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        jLabel1.setText("/");
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        jLabel2.setText("/");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtDD, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtMM, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtYYYY, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtDD, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtMM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtYYYY, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        javax.swing.GroupLayout panDateLayout = new javax.swing.GroupLayout(panDate);
+        panDate.setLayout(panDateLayout);
+        panDateLayout.setHorizontalGroup(
+            panDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panDateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panDateLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panDateLayout.setVerticalGroup(
+            panDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panDateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel5.setText("Enter Time (hh:mm)");
+
+        txtHH.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        txtHH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtHH.setToolTipText("Hour as HH");
+
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText(":");
+
+        txtMin.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
+        txtMin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMin.setToolTipText("Minute as MM");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtHH, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtHH, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panTimeLayout = new javax.swing.GroupLayout(panTime);
+        panTime.setLayout(panTimeLayout);
+        panTimeLayout.setHorizontalGroup(
+            panTimeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panTimeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panTimeLayout.setVerticalGroup(
+            panTimeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panTimeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTimeLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
+        );
+
+        btnAction.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        btnAction.setText("Add");
+
+        btnCancel.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        btnCancel.setText("Cancel");
+
+        btnDelete.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+
+        javax.swing.GroupLayout panBtnsLayout = new javax.swing.GroupLayout(panBtns);
+        panBtns.setLayout(panBtnsLayout);
+        panBtnsLayout.setHorizontalGroup(
+            panBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panBtnsLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAction, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panBtnsLayout.setVerticalGroup(
+            panBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panBtnsLayout.createSequentialGroup()
+                .addGap(0, 22, Short.MAX_VALUE)
+                .addGroup(panBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancel)
+                    .addComponent(btnAction)
+                    .addComponent(btnDelete)))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panBtns, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout diaActionLayout = new javax.swing.GroupLayout(diaAction.getContentPane());
+        diaAction.getContentPane().setLayout(diaActionLayout);
+        diaActionLayout.setHorizontalGroup(
+            diaActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        diaActionLayout.setVerticalGroup(
+            diaActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaActionLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        diaError.setTitle("Hey there!!");
+        diaError.setAlwaysOnTop(true);
+        diaError.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        diaError.setMaximumSize(new java.awt.Dimension(80, 40));
+        diaError.setMinimumSize(new java.awt.Dimension(80, 40));
+
+        btnErrorOK.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        btnErrorOK.setText("Ok");
+
+        lblPopup.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        lblPopup.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblPopup.setText("Error Details");
+        lblPopup.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        titlePopup.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 24)); // NOI18N
+        titlePopup.setText("An error has occurred!");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnErrorOK, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPopup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(titlePopup)
+                        .addGap(0, 142, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titlePopup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPopup, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(btnErrorOK)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout diaErrorLayout = new javax.swing.GroupLayout(diaError.getContentPane());
+        diaError.getContentPane().setLayout(diaErrorLayout);
+        diaErrorLayout.setHorizontalGroup(
+            diaErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        diaErrorLayout.setVerticalGroup(
+            diaErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,7 +435,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         lblNext.setText("Next Alarm");
 
         lblNextAlarm.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
-        lblNextAlarm.setText("01/01/1900 00:01:00");
+        lblNextAlarm.setText("01/01/1900 00:01");
 
         javax.swing.GroupLayout pNextAlarmLayout = new javax.swing.GroupLayout(pNextAlarm);
         pNextAlarm.setLayout(pNextAlarmLayout);
@@ -163,27 +485,16 @@ public class MainView extends javax.swing.JFrame implements Observer {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Alarms");
-        jMenu1.setToolTipText("");
+        mAlarm.setText("Alarms");
+        mAlarm.setToolTipText("");
 
         muAdd.setText("Add");
-        jMenu1.add(muAdd);
+        mAlarm.add(muAdd);
 
         muEdit.setText("Edit");
-        muEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                muEditActionPerformed(evt);
-            }
-        });
-        jMenu1.add(muEdit);
+        mAlarm.add(muEdit);
 
-        muRemove.setText("Remove");
-        jMenu1.add(muRemove);
-
-        muAll.setText("View All");
-        jMenu1.add(muAll);
-
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mAlarm);
 
         muExport.setText("Export");
         jMenuBar1.add(muExport);
@@ -204,10 +515,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void muEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_muEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_muEditActionPerformed
-
+     
     /**
      * @param args the command line arguments
      */
@@ -235,7 +543,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         }
         //</editor-fold>
         //</editor-fold>
-
+           
         /* Create and display the form */
        /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -245,31 +553,58 @@ public class MainView extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAction;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnErrorOK;
     private javax.swing.JLabel clockHour;
     private javax.swing.JLabel clockMin;
     private javax.swing.JLabel clockSec;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JComboBox<String> comboAlarm;
+    private javax.swing.JDialog diaAction;
+    private javax.swing.JDialog diaError;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel lblChoose;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblNext;
     private javax.swing.JLabel lblNextAlarm;
+    private javax.swing.JLabel lblPopup;
+    private javax.swing.JMenu mAlarm;
     private javax.swing.JMenuItem muAdd;
-    private javax.swing.JMenuItem muAll;
     private javax.swing.JMenuItem muEdit;
     private javax.swing.JMenu muExport;
-    private javax.swing.JMenuItem muRemove;
     private javax.swing.JPanel pClock;
     private javax.swing.JPanel pContain;
     private javax.swing.JPanel pNextAlarm;
+    private javax.swing.JPanel panBtns;
+    private javax.swing.JPanel panDate;
+    private javax.swing.JPanel panTime;
     private javax.swing.JPanel panel;
     private javax.swing.JLabel sep1;
     private javax.swing.JLabel sep2;
+    private javax.swing.JLabel titleAction;
+    private javax.swing.JLabel titlePopup;
+    private javax.swing.JTextField txtDD;
+    private javax.swing.JTextField txtHH;
+    private javax.swing.JTextField txtMM;
+    private javax.swing.JTextField txtMin;
+    private javax.swing.JTextField txtYYYY;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JLabel getDate(){
         return lblDate;
     }
-    
+   
     public javax.swing.JLabel getHour(){
         return clockHour;
     }
@@ -281,17 +616,90 @@ public class MainView extends javax.swing.JFrame implements Observer {
     public javax.swing.JLabel getSecond(){
         return clockSec;
     }
-    
+
     public javax.swing.JLabel getAlarm(){
         return lblNextAlarm;
     }
     
+    public javax.swing.JLabel gettitleAction(){
+        return titleAction;
+    }
+    
+    /*I can't figure out how to simply return the panel and access components within it so hey a bunch of seperate return statements...*/
+    
+    public javax.swing.JPanel getPanel(){
+        return panel;
+    }
+
+    public javax.swing.JButton getbtnAction(){
+        return btnAction;
+    }
+
+    public javax.swing.JButton getbtnCancel(){
+        return btnCancel;
+    }
+    
+    public javax.swing.JButton getbtnDelete(){
+        return btnDelete;
+    }
+    
+    public javax.swing.JButton getbtnOK(){
+        return btnErrorOK;
+    }
+    
+    public javax.swing.JTextField gettxtDD(){
+        return txtDD;
+    }
+    public javax.swing.JTextField gettxtHH(){
+        return txtHH;
+    }
+    public javax.swing.JTextField gettxtMM(){
+        return txtMM;
+    }
+    public javax.swing.JTextField gettxtMin(){
+        return txtMin;
+    }
+    public javax.swing.JTextField gettxtYY(){
+        return txtYYYY;
+    }
+    
+    public javax.swing.JDialog getActionDi(){
+        return diaAction;
+    }
+    
+    public javax.swing.JDialog getdiaPopup(){
+        return diaError;
+    }
+    
+    public javax.swing.JMenuItem getmuAdd(){
+        return muAdd;
+    }
+    
+    public javax.swing.JMenuItem getmuEdit(){
+        return muEdit;
+    }
+    
+    public javax.swing.JMenuItem getmuExport(){
+        return muExport;
+    }
+    
+    public javax.swing.JComboBox getcomboAlarm(){
+        return comboAlarm;
+    }
+    
+    public javax.swing.JLabel getlblChoose(){
+        return lblChoose;
+    }
+
+    public javax.swing.JLabel getlblPopp(){
+        return lblPopup;
+    }
+    
+    public javax.swing.JLabel gettitlePopup(){
+        return titlePopup;
+    }
+    
     public void update(Observable o, Object data) { 
-      /* System.out.println((String)data);
-       clockHour.setText((String)data);
-       /*clockHour.getText();
-       clockMin.setText(String.valueOf(m.minute));
-       clockSec.setText(String.valueOf(m.second));
-       lblDate.setText(m.datelbl);*/
+        
     }
 }
