@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import queuemanager.HeapPQ;
+import queuemanager.PriorityItem;
 import queuemanager.PriorityQueue;
 import queuemanager.QueueOverflowException;
 import queuemanager.QueueUnderflowException;
@@ -34,7 +35,7 @@ public class Model extends Observable {
     String datelbl, alarmin;
     int oldSecond = 0;
     PriorityQueue<Alarms> heap;
-    
+    private Object[] blah;
     
     /**
      *
@@ -66,16 +67,24 @@ public class Model extends Observable {
         }
     }
     
-    public ArrayList<String> getHead(){
+    public ArrayList<String> getHead() throws QueueUnderflowException{
         ArrayList<String> strarray = new ArrayList<String>();
-        try {
+        
             strarray=buildPop(heap.head());
-        } catch (QueueUnderflowException ex) {
-            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+            
+        
         return strarray;
     }
     
+    public int testy() {
+        int i = 0;
+        System.out.println(heap.toString());
+        
+            
+        
+        return i;
+    }
     
     
     public ArrayList<String> buildPop(Alarms h) {
@@ -136,7 +145,7 @@ public class Model extends Observable {
                         addAlarm(bi);
                     
                 }
-                System.out.println("No More Alarms");
+                //System.out.println("No More Alarms");
                 check = true;
                 return strarray;
             } else {

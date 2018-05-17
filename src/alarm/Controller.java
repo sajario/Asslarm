@@ -30,9 +30,9 @@ public class Controller {
     
     public void refreshCombo() {
              ArrayList<String> fullHeap = new ArrayList<String>();
-             {
+             
                  fullHeap = model.heaptoArray("");
-                }
+                
              view.getcomboAlarm().removeAllItems();
                 
             view.getcomboAlarm().setModel(new DefaultComboBoxModel(fullHeap.toArray()));
@@ -62,14 +62,20 @@ public class Controller {
         
         model.testData();
         
-        
+        int i = model.testy();
         
         listener = new ActionListener() {
              ArrayList<String> nextA = new ArrayList<String>();
             public void actionPerformed(ActionEvent e) {
                                 
-                nextA = model.getHead();
-                view.getAlarm().setText(nextA.get(0));
+                 try {
+                     nextA = model.getHead();
+                     view.getAlarm().setText(nextA.get(0));
+                 } catch (QueueUnderflowException ex) {
+                     view.getAlarm().setText("No Alarm Set");
+                 }
+                
+                
                 
                 model.update(String.valueOf(view.getAlarm().getText()));
                 
@@ -123,7 +129,7 @@ public class Controller {
                         } else {
                             view.getdiaPopup().pack();
                             view.gettitlePopup().setText("Error has occurred!");
-                            view.getlblPopp().setText("<HTML>I'm afraid you have not filled out all the right information.  The alarm has to be in the future.  There must be 2 digits for the day and month and 4 digits for the Year.  The time has to be 24hr format.  I'll clear the form for you and you can start again.<HTML>");
+                            view.getlblPopp().setText("<HTML>The alarm has to be in the future.  There must be 2 digits for the day and month and 4 digits for the Year.  The time has to be 24hr format.  I'll clear the form for you and you can start again.<HTML>");
                             view.getdiaPopup().setVisible(true);
                             
                         }
@@ -148,17 +154,13 @@ public class Controller {
                                         view.getlblPopp().setText("<HTML>Phew it worked! Your alarm has been added.<HTML>");
                                         view.getdiaPopup().setVisible(true);
                                         refreshCombo();
-                                        btnBuild = model.heaptoArray("");
-                                        //buildSingleArray(btnBuild); 
+                                        
                                     } else {
                                         view.getdiaPopup().pack();
                                         view.gettitlePopup().setText("Uh Oh!");
                                         view.getlblPopp().setText("<HTML>Something went Wrong");
                                         view.getdiaPopup().setVisible(true);
                                     }
-
-
-
 
                                 } else {
                                     view.getdiaPopup().pack();
@@ -185,7 +187,33 @@ public class Controller {
                         break;
                     
                     case "Delete":
-                        
+                        if (obj.toString().equals(tf)){
+
+                            if (obj != null) {
+                                model.heaptoArray(obj.toString());
+                            }
+                            btnBuild = model.heaptoArray("");
+
+                            if (!btnBuild.isEmpty()){
+
+                                view.getdiaPopup().pack();
+                                view.gettitlePopup().setText("Alarm Deleted");
+                                view.getlblPopp().setText("<HTML>Phew it worked! Your alarm has been deleted.<HTML>");
+                                view.getdiaPopup().setVisible(true);
+                                refreshCombo();
+                                 
+                            } else {
+                                
+                                view.getActionDi().setVisible(false);
+                            }
+
+                        } else {
+                             view.getdiaPopup().pack();
+                            view.gettitlePopup().setText("Error has occurred!");
+                            view.getlblPopp().setText("<HTML>You have made changes to this alarm before deleting..thats not really allowed.<HTML>");
+                            view.getdiaPopup().setVisible(true);
+                        }    
+                        view.getcomboAlarm().setSelectedIndex(0);   
                         break;
                     
                     case "Ok":
@@ -197,6 +225,8 @@ public class Controller {
                         view.gettxtYY().setText("");
                         if(view.gettitleAction().getText()=="AddAlarm"){
                         view.getcomboAlarm().setSelectedIndex(-1);
+                        }else{
+                            view.getcomboAlarm().setSelectedIndex(0);
                         }
                         break;
                     default:
@@ -212,11 +242,15 @@ public class Controller {
                 refreshCombo();
                  
 
-                 {
-                     menuBuild = model.getHead();
-                }
                  
-                if (menuBuild.size()< 1){
+                try {
+                    menuBuild = model.getHead();
+                } catch (QueueUnderflowException ex) {
+                   // Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+                 
+                if (menuBuild.isEmpty()){
                     
                     view.getcomboAlarm().setVisible(false);
                     view.getlblChoose().setVisible(false);
@@ -238,13 +272,14 @@ public class Controller {
                         view.getActionDi().setVisible(true);
                         break;
                     case "Edit":
-                        view.getcomboAlarm().setSelectedIndex(0);                       
+                                               
                         if (menuBuild.size()== 0){
                             view.getdiaPopup().pack();
                             view.gettitlePopup().setText("You want to do what now??");
                             view.getlblPopp().setText("<HTML>Sorry but you have no alarms to edit.<HTML>");
                             view.getdiaPopup().setVisible(true);
                         } else {
+                            view.getcomboAlarm().setSelectedIndex(0);
                             view.getActionDi().pack();
                             view.gettitleAction().setText("Edit Alarm");
                             view.getbtnAction().setText("Edit");

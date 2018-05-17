@@ -330,7 +330,11 @@ public class MainView extends javax.swing.JFrame implements Observer {
         diaError.setTitle("Hey there!!");
         diaError.setAlwaysOnTop(true);
         diaError.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        diaError.setMaximumSize(new java.awt.Dimension(80, 40));
         diaError.setMinimumSize(new java.awt.Dimension(80, 40));
+
+        jPanel3.setMaximumSize(new java.awt.Dimension(80, 40));
+        jPanel3.setMinimumSize(new java.awt.Dimension(80, 40));
 
         btnErrorOK.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         btnErrorOK.setText("Ok");
@@ -357,7 +361,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
                         .addGap(0, 142, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(101, 101, 101)
                 .addComponent(btnErrorOK, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -365,12 +369,12 @@ public class MainView extends javax.swing.JFrame implements Observer {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titlePopup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titlePopup, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPopup, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPopup, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnErrorOK)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout diaErrorLayout = new javax.swing.GroupLayout(diaError.getContentPane());
@@ -381,7 +385,9 @@ public class MainView extends javax.swing.JFrame implements Observer {
         );
         diaErrorLayout.setVerticalGroup(
             diaErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(diaErrorLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
