@@ -5,10 +5,12 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.time.temporal.ChronoUnit.MINUTES;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import queuemanager.HeapPQ;
+import queuemanager.PriorityItem;
 import queuemanager.PriorityQueue;
 import queuemanager.QueueOverflowException;
 import queuemanager.QueueUnderflowException;
@@ -33,7 +35,7 @@ public class Model extends Observable {
     String datelbl, alarmin;
     int oldSecond = 0;
     PriorityQueue<Alarms> heap;
-    
+    private Object[] blah;
     
     /**
      *
@@ -65,26 +67,105 @@ public class Model extends Observable {
         }
     }
     
-    public void heaptoArray() throws QueueUnderflowException {
+    public ArrayList<String> getHead() throws QueueUnderflowException{
+        ArrayList<String> strarray = new ArrayList<String>();
         
-        Alarms strarray[] = new Alarms [15];
-        boolean check = false;
+            strarray=buildPop(heap.head());
+        
+            
+        
+        return strarray;
+    }
+    
+    public int testy() {
         int i = 0;
-        for (i = 0; (i < 15 && check == false) ; i++){
-            if(heap.isEmpty()){
-                System.out.println("No More Alarms");
-                check = true;
-            } else {
-                strarray[i] = heap.head();
-                heap.remove();
-            }
-        }
+        System.out.println(heap.toString());
         
-        System.out.println (Arrays.toString(strarray));
-        //System.out.println (heap.toString());
+            
+        
+        return i;
     }
     
     
+    public ArrayList<String> buildPop(Alarms h) {
+        ArrayList<String> strarray = new ArrayList<String>();
+        strarray.add(h.getDTT());
+        if (Integer.toString(h.getDT().getDayOfMonth()).length()==1){
+            strarray.add("0"+Integer.toString(h.getDT().getDayOfMonth()));
+        } else {
+            strarray.add(Integer.toString(h.getDT().getDayOfMonth()));
+        }
+        
+        if (Integer.toString(h.getDT().getMonthValue()).length()==1){
+            strarray.add("0"+Integer.toString(h.getDT().getMonthValue()));
+        } else {
+            strarray.add(Integer.toString(h.getDT().getMonthValue()));
+        }
+        
+        if (Integer.toString(h.getDT().getYear()).length()==1){
+            strarray.add("0"+Integer.toString(h.getDT().getYear()));
+        } else {
+            strarray.add(Integer.toString(h.getDT().getYear()));
+        }
+        
+        if (Integer.toString(h.getDT().getHour()).length()==1){
+            strarray.add("0"+Integer.toString(h.getDT().getHour()));
+        } else {
+            strarray.add(Integer.toString(h.getDT().getHour()));
+        }
+        
+        if (Integer.toString(h.getDT().getMinute()).length()==1){
+            strarray.add("0"+Integer.toString(h.getDT().getMinute()));
+        } else {
+            strarray.add(Integer.toString(h.getDT().getMinute()));
+        }
+        
+        return strarray;
+    }
+    
+    public ArrayList<String> heaptoArray(String editable) {
+        
+        ArrayList<String> strarray = new ArrayList<String>();
+        boolean check = false;
+        int i= 0;
+        int j = 0;
+        String bi;
+        for (i = 0; check == false ; i++){
+            try {
+                if (editable==heap.head().getDTT()){
+                    heap.remove();
+                }
+            } catch (QueueUnderflowException ex) {
+                //Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(heap.isEmpty()){
+                for (j = 0; j < strarray.size(); j++){
+                    
+                        bi = strarray.get(j);
+                        addAlarm(bi);
+                    
+                }
+                //System.out.println("No More Alarms");
+                check = true;
+                return strarray;
+            } else {
+                
+                try {
+                    strarray.add(heap.head().getDTT());
+                    heap.remove();
+                } catch (QueueUnderflowException ex) {
+                    //
+                }
+            }
+        }
+        
+        
+        
+        
+        return strarray;
+
+    }
+   
     public void testData() {
         /*Alarm Test Data*/
         boolean checkFormat, checkFormat1, checkFormat2;
@@ -187,6 +268,7 @@ public class Model extends Observable {
         long minutesBetween = MINUTES.between(now, alarm);
         int PQ = (int)minutesBetween;
         PQ = -PQ;
+        
         //System.out.println(PQ);
         Alarms larmin = new Alarms(dtt,alarm);
         try {
@@ -197,6 +279,22 @@ public class Model extends Observable {
         } 
         
     }
+    
+    public ArrayList<String> comboPop(String dtt){
+        DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime alarm = LocalDateTime.parse(dtt,fmtDateTime);
+        long minutesBetween = MINUTES.between(now, alarm);
+        int PQ = (int)minutesBetween;
+        PQ = -PQ;
+        
+        //System.out.println(PQ);
+        Alarms larmin = new Alarms(dtt,alarm);
+        
+        ArrayList<String> strarray = new ArrayList<String>();
+        strarray=buildPop(larmin);
+        return strarray;
+    }
+    
     
 }
     

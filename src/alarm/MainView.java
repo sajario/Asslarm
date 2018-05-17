@@ -42,7 +42,13 @@ public class MainView extends javax.swing.JFrame implements Observer {
         jPanel2 = new javax.swing.JPanel();
         titleAction = new javax.swing.JLabel();
         lblChoose = new javax.swing.JLabel();
-        comboAlarm = new javax.swing.JComboBox<>();
+        try {
+            comboAlarm =(javax.swing.JComboBox)java.beans.Beans.instantiate(getClass().getClassLoader(), "alarm.MainView_comboAlarm");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
         panDate = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -84,6 +90,8 @@ public class MainView extends javax.swing.JFrame implements Observer {
         muEdit = new javax.swing.JMenuItem();
         muExport = new javax.swing.JMenu();
 
+        diaAction.setTitle("Alarm Stuff");
+
         jPanel2.setMinimumSize(new java.awt.Dimension(20, 20));
 
         titleAction.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
@@ -91,8 +99,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
 
         lblChoose.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
         lblChoose.setText("or choose existing alarm >>");
-
-        comboAlarm.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,6 +134,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
         txtDD.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
         txtDD.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDD.setToolTipText("Day as DD");
+        txtDD.setAutoscrolls(false);
 
         txtYYYY.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
         txtYYYY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -326,8 +333,12 @@ public class MainView extends javax.swing.JFrame implements Observer {
         diaError.setMaximumSize(new java.awt.Dimension(80, 40));
         diaError.setMinimumSize(new java.awt.Dimension(80, 40));
 
+        jPanel3.setMaximumSize(new java.awt.Dimension(80, 40));
+        jPanel3.setMinimumSize(new java.awt.Dimension(80, 40));
+
         btnErrorOK.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         btnErrorOK.setText("Ok");
+        btnErrorOK.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblPopup.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         lblPopup.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -341,10 +352,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnErrorOK, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,17 +360,21 @@ public class MainView extends javax.swing.JFrame implements Observer {
                         .addComponent(titlePopup)
                         .addGap(0, 142, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(btnErrorOK, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titlePopup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titlePopup, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPopup, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(lblPopup, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnErrorOK)
-                .addContainerGap())
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout diaErrorLayout = new javax.swing.GroupLayout(diaError.getContentPane());
@@ -374,10 +385,13 @@ public class MainView extends javax.swing.JFrame implements Observer {
         );
         diaErrorLayout.setVerticalGroup(
             diaErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(diaErrorLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Clock n' That");
 
         lblDate.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
         lblDate.setText("01/01/1900");
