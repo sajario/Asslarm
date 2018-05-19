@@ -136,6 +136,7 @@ public class Model extends Observable {
                     heap.remove();
                 }
             } catch (QueueUnderflowException ex) {
+                
                 //Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
             }
             if(heap.isEmpty()){
@@ -151,6 +152,7 @@ public class Model extends Observable {
             } else {
                 
                 try {
+                    
                     strarray.add(heap.head().getDTT());
                     heap.remove();
                 } catch (QueueUnderflowException ex) {

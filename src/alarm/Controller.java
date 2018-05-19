@@ -140,12 +140,12 @@ public class Controller {
                             if(checkFormat){
 
                             //model.addAlarm(view.getcomboAlarm().getSelectedItem().toString());
-                            if (obj != null) {
+                                model.addAlarm(tf);
                                 model.heaptoArray(obj.toString());
-                            }
+                            
                             btnBuild = model.heaptoArray("");
 
-                                    model.addAlarm(tf);
+                                    
 
                                     if (!btnBuild.isEmpty()){
 
@@ -204,6 +204,9 @@ public class Controller {
                                  
                             } else {
                                 
+                                obj = "";
+                                tf = "";
+                                
                                 view.getActionDi().setVisible(false);
                             }
 
@@ -218,12 +221,13 @@ public class Controller {
                     
                     case "Ok":
                         view.getdiaPopup().setVisible(false);
+                        view.getActionDi().setVisible(false);
                         view.gettxtDD().setText("");
                         view.gettxtHH().setText("");
                         view.gettxtMin().setText("");
                         view.gettxtMM().setText("");
                         view.gettxtYY().setText("");
-                        if(view.gettitleAction().getText()=="AddAlarm"){
+                        if(view.gettitleAction().getText()=="Add Alarm"){
                         view.getcomboAlarm().setSelectedIndex(-1);
                         }else{
                             view.getcomboAlarm().setSelectedIndex(0);
@@ -254,6 +258,11 @@ public class Controller {
                     
                     view.getcomboAlarm().setVisible(false);
                     view.getlblChoose().setVisible(false);
+                    view.gettxtDD().setText("");
+                    view.gettxtHH().setText("");
+                    view.gettxtMin().setText("");
+                    view.gettxtMM().setText("");
+                    view.gettxtYY().setText("");
                 } else {
                     view.getcomboAlarm().setVisible(true);
                     view.getlblChoose().setVisible(true);
