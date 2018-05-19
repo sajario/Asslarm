@@ -72,6 +72,12 @@ public class MainView extends javax.swing.JFrame implements Observer {
         btnErrorOK = new javax.swing.JButton();
         lblPopup = new javax.swing.JLabel();
         titlePopup = new javax.swing.JLabel();
+        diaAlarmOFF = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        btnAlarmOFF = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblAlarmOFF = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
         pContain = new javax.swing.JPanel();
         pClock = new javax.swing.JPanel();
@@ -356,14 +362,12 @@ public class MainView extends javax.swing.JFrame implements Observer {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPopup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(titlePopup)
-                        .addGap(0, 142, Short.MAX_VALUE)))
+                    .addComponent(titlePopup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(btnErrorOK, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,6 +392,68 @@ public class MainView extends javax.swing.JFrame implements Observer {
             .addGroup(diaErrorLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        diaAlarmOFF.setTitle("ALARMING!!");
+        diaAlarmOFF.setAlwaysOnTop(true);
+        diaAlarmOFF.setMinimumSize(new java.awt.Dimension(361, 163));
+        diaAlarmOFF.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        btnAlarmOFF.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        btnAlarmOFF.setText("Turn Off");
+        btnAlarmOFF.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("HEY!! Stop What you Are Doing!!");
+
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("the time is now...");
+
+        lblAlarmOFF.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
+        lblAlarmOFF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAlarmOFF.setText("01/01/1900");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAlarmOFF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(btnAlarmOFF, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblAlarmOFF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAlarmOFF)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout diaAlarmOFFLayout = new javax.swing.GroupLayout(diaAlarmOFF.getContentPane());
+        diaAlarmOFF.getContentPane().setLayout(diaAlarmOFFLayout);
+        diaAlarmOFFLayout.setHorizontalGroup(
+            diaAlarmOFFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        diaAlarmOFFLayout.setVerticalGroup(
+            diaAlarmOFFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -568,6 +634,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAction;
+    private javax.swing.JButton btnAlarmOFF;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnErrorOK;
@@ -576,18 +643,23 @@ public class MainView extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel clockSec;
     private javax.swing.JComboBox<String> comboAlarm;
     private javax.swing.JDialog diaAction;
+    private javax.swing.JDialog diaAlarmOFF;
     private javax.swing.JDialog diaError;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lblAlarmOFF;
     private javax.swing.JLabel lblChoose;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblNext;
@@ -707,10 +779,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
 
     public javax.swing.JLabel getlblPopp(){
         return lblPopup;
-    }
-    
-    public javax.swing.JLabel getlblNextAlarm(){
-        return lblNextAlarm;
     }
     
     public javax.swing.JLabel gettitlePopup(){

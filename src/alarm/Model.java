@@ -34,14 +34,14 @@ public class Model extends Observable {
     int second = 0;
     String datelbl, alarmin;
     int oldSecond = 0;
-    PriorityQueue<Object> heap;
-    
+    PriorityQueue<Alarms> heap;
+    private Object[] blah;
     
     /**
      *
      * @param al
      */
-    public Model(PriorityQueue<Object> q) {
+    public Model(PriorityQueue<Alarms> q) {
         heap = q;   
     }
     
@@ -59,7 +59,6 @@ public class Model extends Observable {
         second = now.getSecond();
         alarmin = al;
         
-        
       
         
         if (oldSecond != second) {
@@ -68,10 +67,10 @@ public class Model extends Observable {
         }
     }
     
-    public ArrayList<Object> getHead() throws QueueUnderflowException{
-        ArrayList<Object> strarray = new ArrayList<Object>();
+    public ArrayList<String> getHead() throws QueueUnderflowException{
+        ArrayList<String> strarray = new ArrayList<String>();
         
-            strarray=buildPop((Alarms) heap.head());
+            strarray=buildPop(heap.head());
         
             
         
@@ -88,8 +87,8 @@ public class Model extends Observable {
     }
     
     
-    public ArrayList<Object> buildPop(Alarms h) {
-        ArrayList<Object> strarray = new ArrayList<Object>();
+    public ArrayList<String> buildPop(Alarms h) {
+        ArrayList<String> strarray = new ArrayList<String>();
         strarray.add(h.getDTT());
         if (Integer.toString(h.getDT().getDayOfMonth()).length()==1){
             strarray.add("0"+Integer.toString(h.getDT().getDayOfMonth()));
@@ -121,24 +120,23 @@ public class Model extends Observable {
             strarray.add(Integer.toString(h.getDT().getMinute()));
         }
         
-        strarray.add(h.getDT());
-        
         return strarray;
     }
     
-    public ArrayList<Object> heaptoArray(String editable) {
+    public ArrayList<String> heaptoArray(String editable) {
         
-        ArrayList<Object> strarray = new ArrayList<Object>();
+        ArrayList<String> strarray = new ArrayList<String>();
         boolean check = false;
         int i= 0;
         int j = 0;
-        Object bi;
+        String bi;
         for (i = 0; check == false ; i++){
             try {
-                if (editable==((Alarms)heap.head()).getDTT()){
+                if (editable==heap.head().getDTT()){
                     heap.remove();
                 }
             } catch (QueueUnderflowException ex) {
+                
                 //Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
             }
             if(heap.isEmpty()){
@@ -154,7 +152,8 @@ public class Model extends Observable {
             } else {
                 
                 try {
-                    strarray.add(((Alarms)heap.head()).getDTT());
+                    
+                    strarray.add(heap.head().getDTT());
                     heap.remove();
                 } catch (QueueUnderflowException ex) {
                     //
@@ -265,15 +264,15 @@ public class Model extends Observable {
         return checkFormat = false;
     }
     
-    public void addAlarm(Object dtt) {
+    public void addAlarm(String dtt) {
         DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime alarm = LocalDateTime.parse(dtt.toString(),fmtDateTime);
+        LocalDateTime alarm = LocalDateTime.parse(dtt,fmtDateTime);
         long minutesBetween = MINUTES.between(now, alarm);
         int PQ = (int)minutesBetween;
         PQ = -PQ;
         
         //System.out.println(PQ);
-        Alarms larmin = new Alarms(dtt.toString(),alarm);
+        Alarms larmin = new Alarms(dtt,alarm);
         try {
                 heap.add(larmin, PQ);
 
@@ -283,7 +282,7 @@ public class Model extends Observable {
         
     }
     
-    public ArrayList<Object> comboPop(String dtt){
+    public ArrayList<String> comboPop(String dtt){
         DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime alarm = LocalDateTime.parse(dtt,fmtDateTime);
         long minutesBetween = MINUTES.between(now, alarm);
@@ -293,7 +292,7 @@ public class Model extends Observable {
         //System.out.println(PQ);
         Alarms larmin = new Alarms(dtt,alarm);
         
-        ArrayList<Object> strarray = new ArrayList<Object>();
+        ArrayList<String> strarray = new ArrayList<String>();
         strarray=buildPop(larmin);
         return strarray;
     }
