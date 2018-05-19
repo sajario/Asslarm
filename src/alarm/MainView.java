@@ -731,6 +731,10 @@ public class MainView extends javax.swing.JFrame implements Observer {
         return btnErrorOK;
     }
     
+    public javax.swing.JButton getbtnAlarmOFF(){
+        return btnAlarmOFF;
+    }
+    
     public javax.swing.JTextField gettxtDD(){
         return txtDD;
     }
@@ -785,10 +789,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
     
     public javax.swing.JLabel getlblAlarmOFF(){
         return lblAlarmOFF;
-    }
-    
-    public javax.swing.JButton getbtnAlarmOFF(){
-        return btnAlarmOFF;
     }
     
     public javax.swing.JDialog getdiaNow(){

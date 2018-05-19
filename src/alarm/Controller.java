@@ -257,11 +257,14 @@ public class Controller {
                         view.gettxtMin().setText("");
                         view.gettxtMM().setText("");
                         view.gettxtYY().setText("");
-                        if(view.gettitleAction().getText()=="Add Alarm"){
+                        if("Add Alarm".equals(view.gettitleAction().getText())){
                         view.getcomboAlarm().setSelectedIndex(-1);
                         }else{
                             view.getcomboAlarm().setSelectedIndex(0);
                         }
+                        break;
+                    case "Turn Off":
+                        view.getdiaNow().setVisible(false); 
                         break;
                     default:
                         break;
@@ -366,6 +369,7 @@ public class Controller {
         view.getbtnCancel().addActionListener(actionpress);
         view.getbtnDelete().addActionListener(actionpress);
         view.getbtnOK().addActionListener(actionpress);
+        view.getbtnAlarmOFF().addActionListener(actionpress);
         view.getmuEdit().addActionListener(menuitem);
         view.getmuAdd().addActionListener(menuitem);
         view.getmuExport().addActionListener(menuitem);
