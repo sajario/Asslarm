@@ -403,7 +403,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("HEY!! Stop What you Are Doing!!");
+        jLabel3.setText("HEY!! Stop what you are doing!!");
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

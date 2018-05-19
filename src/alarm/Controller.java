@@ -122,12 +122,13 @@ public class Controller {
             if (isitnow){
                 
                 view.getlblAlarmOFF().setText(view.getAlarm().getText());
-                //Toolkit.getDefaultToolkit().beep();
+               
                 
                 view.getdiaNow().pack();
                 view.getdiaNow().setVisible(true);                 
                 model.heaptoArray(view.getAlarm().getText());
-                alarmBeep();
+                 Toolkit.getDefaultToolkit().beep();
+                //alarmBeep();
                  
                 } 
             }

@@ -574,7 +574,7 @@
                   <Font name="Tw Cen MT" size="24" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="HEY!! Stop What you Are Doing!!"/>
+                <Property name="text" type="java.lang.String" value="HEY!! Stop what you are doing!!"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
