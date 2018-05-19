@@ -49,9 +49,8 @@ public class Model extends Observable {
      *
      * @param al
      */
-    public void update(String al) {
+    public boolean update(String al) {
         LocalDateTime now = LocalDateTime.now();
-
         datelbl = now.format(fmtDate);
         hour = now.getHour();
         minute = now.getMinute();
@@ -59,12 +58,19 @@ public class Model extends Observable {
         second = now.getSecond();
         alarmin = al;
         
-      
+        
         
         if (oldSecond != second) {
             setChanged();
             notifyObservers();
         }
+        
+        boolean isitnow = false;
+            if (alarmin.equals(fmtDateTime.format(now))){
+                    isitnow = true;
+            }
+
+        return isitnow;
     }
     
     public ArrayList<String> getHead() throws QueueUnderflowException{
@@ -177,7 +183,7 @@ public class Model extends Observable {
         
         LocalDateTime now  = LocalDateTime.now();
         
-        String input = "20/05/2018 27:59";
+        String input = fmtDateTime.format(now.plusMinutes(1));
         String input1 = "20/05/2018 09:32";
         String input2 = "20/05/2018 12:32";
         checkFormat = input.matches(StringCheck);
