@@ -26,10 +26,10 @@ public class Controller {
     Timer timer;
     Model model;
     MainView view;
-    PriorityQueue<Alarms> heap;
+    PriorityQueue<Object> heap;
     
     public void refreshCombo() {
-             ArrayList<String> fullHeap = new ArrayList<String>();
+             ArrayList<Object> fullHeap = new ArrayList<Object>();
              
                  fullHeap = model.heaptoArray("");
                 
@@ -40,12 +40,12 @@ public class Controller {
                 
             };
     
-    public void buildSingleArray(ArrayList<String> build) {
-        view.gettxtDD().setText(build.get(1));
-        view.gettxtMM().setText(build.get(2));
-        view.gettxtYY().setText(build.get(3));
-        view.gettxtHH().setText(build.get(4));
-        view.gettxtMin().setText(build.get(5));
+    public void buildSingleArray(ArrayList<Object> build) {
+        view.gettxtDD().setText(build.get(1).toString());
+        view.gettxtMM().setText(build.get(2).toString());
+        view.gettxtYY().setText(build.get(3).toString());
+        view.gettxtHH().setText(build.get(4).toString());
+        view.gettxtMin().setText(build.get(5).toString());
     };
     
     /**
@@ -54,7 +54,7 @@ public class Controller {
      * @param m
      * @param v
      */    
-    public Controller(PriorityQueue<Alarms> q, Model m, MainView v) {
+    public Controller(PriorityQueue<Object> q, Model m, MainView v) {
         model = m;
         view = v;
         heap = q;
@@ -65,12 +65,12 @@ public class Controller {
         int i = model.testy();
         
         listener = new ActionListener() {
-             ArrayList<String> nextA = new ArrayList<String>();
+             ArrayList<Object> nextA = new ArrayList<Object>();
             public void actionPerformed(ActionEvent e) {
                                 
                  try {
                      nextA = model.getHead();
-                     view.getAlarm().setText(nextA.get(0));
+                     view.getAlarm().setText(nextA.get(0).toString());
                  } catch (QueueUnderflowException ex) {
                      view.getAlarm().setText("No Alarm Set");
                  }
@@ -111,7 +111,7 @@ public class Controller {
                 String tf = view.gettxtDD().getText()+"/"+view.gettxtMM().getText()+"/"+ view.gettxtYY().getText()+" "+view.gettxtHH().getText()+":"+view.gettxtMin().getText();
                 boolean checkFormat = model.chkUserInput(tf);
                 int i= 0;
-                ArrayList<String> btnBuild = new ArrayList<String>();
+                ArrayList<Object> btnBuild = new ArrayList<Object>();
                 Object obj = view.getcomboAlarm().getSelectedItem();
                 
                 
@@ -143,10 +143,10 @@ public class Controller {
                             if (obj != null) {
                                 model.heaptoArray(obj.toString());
                             }
-                            btnBuild = model.heaptoArray("");
 
                                     model.addAlarm(tf);
-
+                                    btnBuild = model.heaptoArray("");
+                                    
                                     if (!btnBuild.isEmpty()){
 
                                         view.getdiaPopup().pack();
@@ -206,7 +206,10 @@ public class Controller {
                                 
                                 obj = "";
                                 tf = "";
-                                
+                                view.getdiaPopup().pack();
+                                view.gettitlePopup().setText("Alarm Deleted");
+                                view.getlblPopp().setText("<HTML>Phew it worked! Your alarm has been deleted.<HTML>");
+                                view.getdiaPopup().setVisible(true);
                                 view.getActionDi().setVisible(false);
                             }
 
@@ -226,9 +229,10 @@ public class Controller {
                         view.gettxtMin().setText("");
                         view.gettxtMM().setText("");
                         view.gettxtYY().setText("");
-                        if(view.gettitleAction().getText()=="AddAlarm"){
+                        
+                        if(view.getAlarm().getText() == "No Alarm Set"){
                         view.getcomboAlarm().setSelectedIndex(-1);
-                        }else{
+                        }else {
                             view.getcomboAlarm().setSelectedIndex(0);
                         }
                         break;
@@ -241,7 +245,7 @@ public class Controller {
         menuitem = new ActionListener() {
             
             public void actionPerformed(ActionEvent ae) {
-                ArrayList<String> menuBuild = new ArrayList<String>();
+                ArrayList<Object> menuBuild = new ArrayList<Object>();
                 refreshCombo();
                  
 

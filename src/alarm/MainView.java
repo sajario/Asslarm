@@ -709,6 +709,10 @@ public class MainView extends javax.swing.JFrame implements Observer {
         return lblPopup;
     }
     
+    public javax.swing.JLabel getlblNextAlarm(){
+        return lblNextAlarm;
+    }
+    
     public javax.swing.JLabel gettitlePopup(){
         return titlePopup;
     }

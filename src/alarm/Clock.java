@@ -24,7 +24,7 @@ public class Clock {
     public static void main(String[] args) {
         
         /*New Queue*/
-        PriorityQueue<Alarms> q;
+        PriorityQueue<Object> q;
         q = new HeapPQ<>(15);
            
         Model model = new Model(q);
