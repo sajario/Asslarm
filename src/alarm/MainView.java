@@ -336,7 +336,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
         diaError.setTitle("Hey there!!");
         diaError.setAlwaysOnTop(true);
         diaError.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        diaError.setMaximumSize(new java.awt.Dimension(80, 40));
         diaError.setMinimumSize(new java.awt.Dimension(80, 40));
 
         jPanel3.setMaximumSize(new java.awt.Dimension(80, 40));
@@ -397,7 +396,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
         diaAlarmOFF.setTitle("ALARMING!!");
         diaAlarmOFF.setAlwaysOnTop(true);
         diaAlarmOFF.setMinimumSize(new java.awt.Dimension(361, 163));
-        diaAlarmOFF.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
         btnAlarmOFF.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         btnAlarmOFF.setText("Turn Off");
@@ -405,7 +403,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("HEY!! Stop What you Are Doing!!");
+        jLabel3.setText("HEY!! Stop what you are doing!!");
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -733,6 +731,10 @@ public class MainView extends javax.swing.JFrame implements Observer {
         return btnErrorOK;
     }
     
+    public javax.swing.JButton getbtnAlarmOFF(){
+        return btnAlarmOFF;
+    }
+    
     public javax.swing.JTextField gettxtDD(){
         return txtDD;
     }
@@ -784,6 +786,15 @@ public class MainView extends javax.swing.JFrame implements Observer {
     public javax.swing.JLabel gettitlePopup(){
         return titlePopup;
     }
+    
+    public javax.swing.JLabel getlblAlarmOFF(){
+        return lblAlarmOFF;
+    }
+    
+    public javax.swing.JDialog getdiaNow(){
+        return diaAlarmOFF;
+    }
+    
     
     public void update(Observable o, Object data) { 
         

@@ -1,15 +1,9 @@
 package alarm;
 
+import java.awt.Toolkit;
 import java.awt.event.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import static java.time.temporal.ChronoUnit.DAYS;
-import static java.time.temporal.ChronoUnit.MINUTES;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import queuemanager.HeapPQ;
 import queuemanager.PriorityQueue;
@@ -22,11 +16,32 @@ import queuemanager.QueueUnderflowException;
  */
 public class Controller {
     
-    ActionListener combo, listener,actionpress,menuitem;
-    Timer timer;
+    ActionListener alarmy, combo, listener,actionpress,menuitem;
+    Timer timer, timer1;
     Model model;
     MainView view;
     PriorityQueue<Alarms> heap;
+    boolean isitnow = false;
+    
+    
+    private void alarmBeep() {
+        Toolkit t = view.getdiaNow().getToolkit();
+        /*int i = LocalDateTime.now().getSecond();
+        int j = 0;*/
+        long start = System.currentTimeMillis();
+        long end = start + 5000;
+          do {
+            Toolkit.getDefaultToolkit().beep();
+            try {
+                Thread.sleep( 100 );
+            }
+            catch ( InterruptedException x ) {}
+        } while ( System.currentTimeMillis() < end );
+        
+            
+        
+    }
+
     
     public void refreshCombo() {
              ArrayList<String> fullHeap = new ArrayList<String>();
@@ -63,9 +78,11 @@ public class Controller {
         model.testData();
         
         int i = model.testy();
+                
         
         listener = new ActionListener() {
              ArrayList<String> nextA = new ArrayList<String>();
+              ArrayList<String> btnBuild = new ArrayList<String>();
             public void actionPerformed(ActionEvent e) {
                                 
                  try {
@@ -99,7 +116,21 @@ public class Controller {
                 
                 view.getDate().setText(model.datelbl);
                 view.getAlarm().setText(String.valueOf(model.alarmin));
+               
+                isitnow = model.update(view.getAlarm().getText());
                 
+            if (isitnow){
+                
+                view.getlblAlarmOFF().setText(view.getAlarm().getText());
+               
+                
+                view.getdiaNow().pack();
+                view.getdiaNow().setVisible(true);                 
+                model.heaptoArray(view.getAlarm().getText());
+                 Toolkit.getDefaultToolkit().beep();
+                //alarmBeep();
+                 
+                } 
             }
             
         };
@@ -189,9 +220,8 @@ public class Controller {
                     case "Delete":
                         if (obj.toString().equals(tf)){
 
-                            if (obj != null) {
-                                model.heaptoArray(obj.toString());
-                            }
+                            model.heaptoArray(obj.toString());
+                            
                             btnBuild = model.heaptoArray("");
 
                             if (!btnBuild.isEmpty()){
@@ -227,11 +257,14 @@ public class Controller {
                         view.gettxtMin().setText("");
                         view.gettxtMM().setText("");
                         view.gettxtYY().setText("");
-                        if(view.gettitleAction().getText()=="Add Alarm"){
+                        if("Add Alarm".equals(view.gettitleAction().getText())){
                         view.getcomboAlarm().setSelectedIndex(-1);
                         }else{
                             view.getcomboAlarm().setSelectedIndex(0);
                         }
+                        break;
+                    case "Turn Off":
+                        view.getdiaNow().setVisible(false); 
                         break;
                     default:
                         break;
@@ -336,6 +369,7 @@ public class Controller {
         view.getbtnCancel().addActionListener(actionpress);
         view.getbtnDelete().addActionListener(actionpress);
         view.getbtnOK().addActionListener(actionpress);
+        view.getbtnAlarmOFF().addActionListener(actionpress);
         view.getmuEdit().addActionListener(menuitem);
         view.getmuAdd().addActionListener(menuitem);
         view.getmuExport().addActionListener(menuitem);
