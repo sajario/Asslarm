@@ -1,14 +1,9 @@
 package alarm;
 
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import static java.time.temporal.ChronoUnit.*;
-import queuemanager.HeapPQ;
 
+import queuemanager.HeapPQ;
 import queuemanager.PriorityQueue;
-import queuemanager.QueueOverflowException;
-import queuemanager.QueueUnderflowException;
+
 
 /**
  *
@@ -18,8 +13,7 @@ public class Clock {
 
     /**
      *
-     * @param args
-     * @throws QueueUnderflowException
+     * @param args main
      */
     public static void main(String[] args) {
         
@@ -27,6 +21,7 @@ public class Clock {
         PriorityQueue<Alarms> q;
         q = new HeapPQ<>(15);
            
+        /* Sets all the new elements, Model View and Controller and passes relevant objects*/
         Model model = new Model(q);
         MainView view = new MainView(model);
         model.addObserver(view);

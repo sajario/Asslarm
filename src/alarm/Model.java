@@ -3,14 +3,10 @@ package alarm;
 import java.util.Observable;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import static java.time.temporal.ChronoUnit.DAYS;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import static java.time.temporal.ChronoUnit.MINUTES;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import queuemanager.HeapPQ;
-import queuemanager.PriorityItem;
 import queuemanager.PriorityQueue;
 import queuemanager.QueueOverflowException;
 import queuemanager.QueueUnderflowException;
@@ -24,10 +20,9 @@ import queuemanager.QueueUnderflowException;
 
 public class Model extends Observable {
        
-    DateTimeFormatter fmtDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    DateTimeFormatter fmtTime = DateTimeFormatter.ofPattern("HH:mm");
+    DateTimeFormatter fmtDate = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            .withResolverStyle(ResolverStyle.STRICT);;
     DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    LocalDateTime now  = LocalDateTime.now();
             
     int hour = 0;
     int minute = 0;
@@ -39,17 +34,18 @@ public class Model extends Observable {
     
     /**
      *
-     * @param al
+     * @param q
      */
     public Model(PriorityQueue<Alarms> q) {
         heap = q;   
     }
     
     /**
-     *
+     * @return boolean to see if it is indeed time for an alarm to go off
      * @param al
      */
     public boolean update(String al) {
+        /*Get appropriate date and time elements from NOW*/
         LocalDateTime now = LocalDateTime.now();
         datelbl = now.format(fmtDate);
         hour = now.getHour();
@@ -65,6 +61,9 @@ public class Model extends Observable {
             notifyObservers();
         }
         
+        /**
+         * check to is if now is the next alarm (disregards seconds)
+         */
         boolean isitnow = false;
             if (alarmin.equals(fmtDateTime.format(now))){
                     isitnow = true;
@@ -73,26 +72,47 @@ public class Model extends Observable {
         return isitnow;
     }
     
+    /**
+     * 
+     * @return time parts of head in array
+     * @throws QueueUnderflowException 
+     */
     public ArrayList<String> getHead() throws QueueUnderflowException{
         ArrayList<String> strarray = new ArrayList<String>();
         
             strarray=buildPop(heap.head());
+
+        return strarray;
+    }
+     
+    /**
+     * Builds the elements needed for the combo box and calls function to break it down 
+     * @param dtt Date Time as String comes through
+     * @return time parts of head in array
+     */
+    public ArrayList<String> comboPop(String dtt){
+
+        DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime alarm = LocalDateTime.parse(dtt,fmtDateTime);
+        long minutesBetween = MINUTES.between(now, alarm);
+        int PQ = (int)minutesBetween;
+        PQ = -PQ;
         
-            
+        //System.out.println(PQ);
+        Alarms larmin = new Alarms(dtt,alarm);
         
+        ArrayList<String> strarray = new ArrayList<String>();
+        strarray=buildPop(larmin);
         return strarray;
     }
     
-    public int testy() {
-        int i = 0;
-        System.out.println(heap.toString());
-        
-            
-        
-        return i;
-    }
     
-    
+    /**
+     * Builds array for one element in array in the correct setup to use in other areas
+     * @param h is the head of the queue
+     * @return array of time elements to be used in other functions
+     */
     public ArrayList<String> buildPop(Alarms h) {
         ArrayList<String> strarray = new ArrayList<String>();
         strarray.add(h.getDTT());
@@ -129,6 +149,17 @@ public class Model extends Observable {
         return strarray;
     }
     
+    /**
+     * This function is to get around the unchangeable library so items can 
+     * be edited and deleted freely no matter where they are in the array 
+     * as the library only has remove head function
+     * This basically breaks down the heap from top down removing the head and 
+     * inserting it into an array and for editing and deleting editable is used 
+     * to compare the head and remove it without putting into array.  
+     * Then the array builds back up into the heap
+     * @param editable is the string for comparisons
+     * @return 
+     */
     public ArrayList<String> heaptoArray(String editable) {
         
         ArrayList<String> strarray = new ArrayList<String>();
@@ -136,29 +167,28 @@ public class Model extends Observable {
         int i= 0;
         int j = 0;
         String bi;
+        
+        
         for (i = 0; check == false ; i++){
             try {
                 if (editable==heap.head().getDTT()){
                     heap.remove();
                 }
-            } catch (QueueUnderflowException ex) {
-                
-                //Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (QueueUnderflowException ex) {}
+            
             if(heap.isEmpty()){
                 for (j = 0; j < strarray.size(); j++){
-                    
+                        /*Rebuild heap when the heap is empty*/
                         bi = strarray.get(j);
                         addAlarm(bi);
                     
                 }
                 //System.out.println("No More Alarms");
                 check = true;
-                return strarray;
             } else {
                 
                 try {
-                    
+                    /*Build array*/
                     strarray.add(heap.head().getDTT());
                     heap.remove();
                 } catch (QueueUnderflowException ex) {
@@ -167,13 +197,13 @@ public class Model extends Observable {
             }
         }
         
-        
-        
-        
         return strarray;
 
     }
-   
+    
+   /**
+    * Just test data
+    */
     public void testData() {
         /*Alarm Test Data*/
         boolean checkFormat, checkFormat1, checkFormat2;
@@ -183,9 +213,9 @@ public class Model extends Observable {
         
         LocalDateTime now  = LocalDateTime.now();
         
-        String input = fmtDateTime.format(now.plusMinutes(1));
-        String input1 = "20/05/2018 09:32";
-        String input2 = "20/05/2018 12:32";
+        String input = fmtDateTime.format(now.plusMinutes(10));
+        String input1 = fmtDateTime.format(now.plusMinutes(5));
+        String input2 = fmtDateTime.format(now.plusMinutes(1));
         checkFormat = input.matches(StringCheck);
         checkFormat1 = input1.matches(StringCheck);
         checkFormat2 = input2.matches(StringCheck);
@@ -253,28 +283,35 @@ public class Model extends Observable {
         /*TEST END*/
         }
     
-    public boolean chkUserInput(String tf) {
-        boolean checkFormat;
-        DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime now  = LocalDateTime.now();
-        String input = tf;
-        String StringCheck = "[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}[ ]{1}([01]?[0-9]|2[0-3]):[0-5][0-9]";
-        checkFormat = input.matches(StringCheck);
+    /**
+     * Checks the input fields to make sure the date can be formatted correctly later on
+     * @param tf user input from text fields
+     * @return true or false depending
+     */
+    public LocalDateTime chkUserInput(String tf) {
         
-        if (checkFormat){
+        String input = tf;
+        
+        try {
             LocalDateTime alarm = LocalDateTime.parse(input,fmtDateTime);
+            /* Must be formatted correctly and be in the future*/
             if(LocalDateTime.now().isBefore(alarm)){
-                return checkFormat = true;
+                return alarm;
             }
-        }
-        return checkFormat = false;
+        } catch (DateTimeParseException e){}
+        return (LocalDateTime.now().minusDays(1));
     }
     
+    /**
+     * Used to create the PQ integer that will determine queue position
+     * @param dtt 
+     */
     public void addAlarm(String dtt) {
-        DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime now = LocalDateTime.now();
         LocalDateTime alarm = LocalDateTime.parse(dtt,fmtDateTime);
         long minutesBetween = MINUTES.between(now, alarm);
         int PQ = (int)minutesBetween;
+        /*Creating negative number for MIN heap*/
         PQ = -PQ;
         
         //System.out.println(PQ);
@@ -287,22 +324,4 @@ public class Model extends Observable {
         } 
         
     }
-    
-    public ArrayList<String> comboPop(String dtt){
-        DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime alarm = LocalDateTime.parse(dtt,fmtDateTime);
-        long minutesBetween = MINUTES.between(now, alarm);
-        int PQ = (int)minutesBetween;
-        PQ = -PQ;
-        
-        //System.out.println(PQ);
-        Alarms larmin = new Alarms(dtt,alarm);
-        
-        ArrayList<String> strarray = new ArrayList<String>();
-        strarray=buildPop(larmin);
-        return strarray;
-    }
-    
-    
 }
-    

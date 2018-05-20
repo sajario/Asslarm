@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package alarm;
 
 import java.time.LocalDateTime;
@@ -13,20 +8,14 @@ import java.time.LocalDateTime;
  */
 public class Alarms {
    
-    /**
-     *
-     */
     protected String datetimeTXT;
 
-    /**
-     *
-     */
     protected LocalDateTime datetime;
 
     /**
-     *
-     * @param dtt
-     * @param dt
+     * Alarm constructor and methods
+     * @param dtt Text Version of date fit for alarms and combo boxes etc.
+     * @param dt Raw date version of date fit for breaking down.
      */
     public Alarms(String dtt, LocalDateTime dt) {
         this.datetimeTXT = dtt;
@@ -35,7 +24,7 @@ public class Alarms {
 
     /**
      *
-     * @return
+     * @return Text Version of date
      */
     public String getDTT() {
         return datetimeTXT;
@@ -43,15 +32,15 @@ public class Alarms {
 
     /**
      *
-     * @return
+     * @return Raw date version
      */
     public LocalDateTime getDT() {
         return datetime;
     }
-
+    
     /**
-     *
-     * @return
+     * To make sure when toString is called it just prints the date
+     * @return String Version of date
      */
     @Override
     public String toString() {
@@ -59,8 +48,8 @@ public class Alarms {
     }  
     
     /**
-     *
-     * @return
+     * If date is called from alarm then it just gives the rawstuff
+     * @return date version
      */
     public LocalDateTime toDate() {
         return getDT();
