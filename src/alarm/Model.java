@@ -3,6 +3,8 @@ package alarm;
 import java.util.Observable;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import static java.time.temporal.ChronoUnit.MINUTES;
 import java.util.ArrayList;
 import queuemanager.PriorityQueue;
@@ -18,7 +20,8 @@ import queuemanager.QueueUnderflowException;
 
 public class Model extends Observable {
        
-    DateTimeFormatter fmtDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter fmtDate = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            .withResolverStyle(ResolverStyle.STRICT);;
     DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             
     int hour = 0;
@@ -285,20 +288,18 @@ public class Model extends Observable {
      * @param tf user input from text fields
      * @return true or false depending
      */
-    public boolean chkUserInput(String tf) {
-        boolean checkFormat;
-        String input = tf;
-        String StringCheck = "[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}[ ]{1}([01]?[0-9]|2[0-3]):[0-5][0-9]";
-        checkFormat = input.matches(StringCheck);
+    public LocalDateTime chkUserInput(String tf) {
         
-        if (checkFormat){
+        String input = tf;
+        
+        try {
             LocalDateTime alarm = LocalDateTime.parse(input,fmtDateTime);
             /* Must be formatted correctly and be in the future*/
             if(LocalDateTime.now().isBefore(alarm)){
-                return checkFormat = true;
+                return alarm;
             }
-        }
-        return checkFormat = false;
+        } catch (DateTimeParseException e){}
+        return (LocalDateTime.now().minusDays(1));
     }
     
     /**

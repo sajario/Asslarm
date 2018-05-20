@@ -2,6 +2,8 @@ package alarm;
 
 import java.awt.Toolkit;
 import java.awt.event.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Timer;
@@ -59,7 +61,7 @@ public class Controller {
     
     /** 
      * FUNCTION buildSingleArray - Builds an array of elements in one location of heap 
-     * to be broken down and used in elements of vie
+     * to be broken down and used in elements of time
      * @param build*/
     public void buildSingleArray(ArrayList<String> build) {
         view.gettxtDD().setText(build.get(1));
@@ -79,7 +81,10 @@ public class Controller {
         model = m;
         view = v;
         heap = q;
-       
+        final ArrayList<String> empty = new ArrayList<String>();
+        for(int i = 0; i<7;i++){
+            empty.add("");
+        } 
         /*Builds Some test data*/
         model.testData();
                        
@@ -169,8 +174,12 @@ public class Controller {
             public void actionPerformed(ActionEvent ae) {
                 /**
                  * Builds current input fields into date time format and checks validity*/
-                String tf = view.gettxtDD().getText()+"/"+view.gettxtMM().getText()+"/"+ view.gettxtYY().getText()+" "+view.gettxtHH().getText()+":"+view.gettxtMin().getText();
-                boolean checkFormat = model.chkUserInput(tf);
+                String userI = view.gettxtDD().getText()+"/"+view.gettxtMM().getText()+"/"+ view.gettxtYY().getText()+" "+view.gettxtHH().getText()+":"+view.gettxtMin().getText();
+                boolean checkFormat;
+                DateTimeFormatter fmtDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                LocalDateTime alarmparse = model.chkUserInput(userI);
+                String tf =fmtDateTime.format(alarmparse);
+                
                 
                 /**
                  * Arraylist for holding broken down single heap entity*/
@@ -183,29 +192,29 @@ public class Controller {
                 if (null != ae.getActionCommand())switch (ae.getActionCommand()) {
                     case "Add":
                         /**
-                         * The format of the input boxes has already been checked so if it is ok it simply 
+                         * The format of the input is checked so if it is ok it simply 
                         adds and displays relevant info and sorts out combo box with new information*/
-                        if(checkFormat){
+                        
+                        if (!tf.matches(userI) || !LocalDateTime.now().isBefore(alarmparse)){
+                            view.getdiaPopup().pack();
+                            view.gettitlePopup().setText("Error has occurred!");
+                            view.getlblPopp().setText("<HTML>The alarm has to be in the future.  There must be 2 digits for the day and month and 4 digits for the Year.  The time has to be 24hr format.  I'll clear the form for you and you can start again.</HTML>");
+                            view.getdiaPopup().setVisible(true);
+                    
+                            } else {
                             model.addAlarm(tf);
                             view.getdiaPopup().pack();
                             view.gettitlePopup().setText("Alarm Added");
                             view.getlblPopp().setText("<HTML>Phew it worked! Your alarm has now been added.<HTML>");
                             view.getdiaPopup().setVisible(true);
                             refreshCombo();
-                        /**
-                         * Or shows error*/    
-                        } else {
-                            view.getdiaPopup().pack();
-                            view.gettitlePopup().setText("Error has occurred!");
-                            view.getlblPopp().setText("<HTML>The alarm has to be in the future.  There must be 2 digits for the day and month and 4 digits for the Year.  The time has to be 24hr format.  I'll clear the form for you and you can start again.<HTML>");
-                            view.getdiaPopup().setVisible(true);
-                            
-                        }
+                          
+                        } 
                         break;
                     case "Edit":
                         
                         if (!obj.toString().equals(tf)){
-                            if(checkFormat){
+                            if (tf.matches(userI) && LocalDateTime.now().isBefore(alarmparse)){
 
                                 //model.addAlarm(view.getcomboAlarm().getSelectedItem().toString());
                                 
@@ -243,7 +252,7 @@ public class Controller {
                                      * If user input is not formatted correctly*/
                                     view.getdiaPopup().pack();
                                     view.gettitlePopup().setText("Error has occurred!");
-                                    view.getlblPopp().setText("<HTML>I'm afraid There is something wrong with your info.  The alarm has to be in the future.  The time has to be 24hr format.<HTML>");
+                                    view.getlblPopp().setText("<HTML>The alarm has to be in the future.  There must be 2 digits for the day and month and 4 digits for the Year.  The time has to be 24hr format.  I'll clear the form for you and you can start again.</HTML>");
                                     view.getdiaPopup().setVisible(true);
                                 }
                         } else {    
@@ -251,7 +260,7 @@ public class Controller {
                              * If user input is the same as the selected one*/
                             view.getdiaPopup().pack();
                             view.gettitlePopup().setText("Error has occurred!");
-                            view.getlblPopp().setText("<HTML>You haven't made any changes to this alarm.<HTML>");
+                            view.getlblPopp().setText("<HTML>You haven't made any changes to this alarm.</HTML>");
                             view.getdiaPopup().setVisible(true);
                         }
                         break;
@@ -259,11 +268,7 @@ public class Controller {
                     case "Cancel":
                         /**
                          * Clears form*/
-                        view.gettxtDD().setText("");
-                        view.gettxtHH().setText("");
-                        view.gettxtMin().setText("");
-                        view.gettxtMM().setText("");
-                        view.gettxtYY().setText("");
+                        buildSingleArray(empty);
                         view.getbtnDelete().setVisible(false);
                         view.getActionDi().setVisible(false);
                         break;
@@ -308,13 +313,10 @@ public class Controller {
                          * clears form and sets combo box to appropriate value
                          */                         
                         view.getdiaPopup().setVisible(false);
+                        buildSingleArray(empty);
                         view.getActionDi().setVisible(false);
-                        view.gettxtDD().setText("");
-                        view.gettxtHH().setText("");
-                        view.gettxtMin().setText("");
-                        view.gettxtMM().setText("");
-                        view.gettxtYY().setText("");
-                        if("Add Alarm".equals(view.gettitleAction().getText())){
+                        //view.getActionDi().pack();
+                        if(model.heap.isEmpty()){
                         view.getcomboAlarm().setSelectedIndex(-1);
                         }else{
                             view.getcomboAlarm().setSelectedIndex(0);
@@ -336,6 +338,7 @@ public class Controller {
             
             public void actionPerformed(ActionEvent ae) {
                 ArrayList<String> menuBuild = new ArrayList<String>();
+                
                 /*Updates combo box*/
                 refreshCombo();
 
@@ -356,11 +359,7 @@ public class Controller {
 
                         view.getcomboAlarm().setVisible(false);
                         view.getlblChoose().setVisible(false);
-                        view.gettxtDD().setText("");
-                        view.gettxtHH().setText("");
-                        view.gettxtMin().setText("");
-                        view.gettxtMM().setText("");
-                        view.gettxtYY().setText("");
+                        buildSingleArray(empty);
                     } else {
                         view.getcomboAlarm().setVisible(true);
                         view.getlblChoose().setVisible(true);
@@ -376,7 +375,8 @@ public class Controller {
                             view.getActionDi().pack();
                             view.gettitleAction().setText("Add Alarm");
                             view.getbtnAction().setText("Add");
-                            view.getbtnDelete().setVisible(false);
+                            view.getbtnDelete().setVisible(false);                           
+                            buildSingleArray(empty);
                             view.getActionDi().setVisible(true);
                             break;
                         
