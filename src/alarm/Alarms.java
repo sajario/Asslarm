@@ -19,14 +19,14 @@ public class Alarms {
     protected String datetimeTXT;
 
     /**
-     *
+     * 
      */
     protected LocalDateTime datetime;
 
     /**
      *
-     * @param dtt
-     * @param dt
+     * @param dtt Text Version of date fit for alarms and combo boxes etc.
+     * @param dt Raw date version of date fit for breaking down.
      */
     public Alarms(String dtt, LocalDateTime dt) {
         this.datetimeTXT = dtt;
@@ -35,7 +35,7 @@ public class Alarms {
 
     /**
      *
-     * @return
+     * @return Text Version of date
      */
     public String getDTT() {
         return datetimeTXT;
@@ -43,26 +43,10 @@ public class Alarms {
 
     /**
      *
-     * @return
+     * @return Raw date version
      */
     public LocalDateTime getDT() {
         return datetime;
     }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        return getDTT();
-    }  
     
-    /**
-     *
-     * @return
-     */
-    public LocalDateTime toDate() {
-        return getDT();
-    } 
 }
