@@ -47,19 +47,6 @@ public class ModelTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of testy method, of class Model.
-     */
-    @Test
-    public void testTesty() {
-        System.out.println("testy");
-        Model instance = null;
-        int expResult = 0;
-        int result = instance.testy();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of buildPop method, of class Model.

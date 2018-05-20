@@ -17,8 +17,8 @@ public class ClockPanel extends JPanel {
     
     /**
      *
-     * @param m
-     * @param v
+     * @param m pass model
+     * @param v pass view
      */
     public ClockPanel(Model m, MainView v) {
         model = m;
