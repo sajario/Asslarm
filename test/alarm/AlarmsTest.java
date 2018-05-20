@@ -46,4 +46,32 @@ public class AlarmsTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of toString method, of class Alarms.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Alarms instance = null;
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toDate method, of class Alarms.
+     */
+    @Test
+    public void testToDate() {
+        System.out.println("toDate");
+        Alarms instance = null;
+        LocalDateTime expResult = null;
+        LocalDateTime result = instance.toDate();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
 }

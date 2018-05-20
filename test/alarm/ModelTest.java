@@ -5,6 +5,7 @@
  */
 package alarm;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -47,6 +48,20 @@ public class ModelTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of comboPop method, of class Model.
+     */
+    @Test
+    public void testComboPop() {
+        System.out.println("comboPop");
+        String dtt = "";
+        Model instance = null;
+        ArrayList<String> expResult = null;
+        ArrayList<String> result = instance.comboPop(dtt);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 
     /**
      * Test of buildPop method, of class Model.
@@ -98,8 +113,8 @@ public class ModelTest {
         System.out.println("chkUserInput");
         String tf = "";
         Model instance = null;
-        boolean expResult = false;
-        boolean result = instance.chkUserInput(tf);
+        LocalDateTime expResult = null;
+        LocalDateTime result = instance.chkUserInput(tf);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -114,21 +129,6 @@ public class ModelTest {
         String dtt = "";
         Model instance = null;
         instance.addAlarm(dtt);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of comboPop method, of class Model.
-     */
-    @Test
-    public void testComboPop() {
-        System.out.println("comboPop");
-        String dtt = "";
-        Model instance = null;
-        ArrayList<String> expResult = null;
-        ArrayList<String> result = instance.comboPop(dtt);
-        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
