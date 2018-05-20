@@ -62,7 +62,7 @@ public class Controller {
     /** 
      * FUNCTION buildSingleArray - Builds an array of elements in one location of heap 
      * to be broken down and used in elements of time
-     * @param build*/
+     * @param build what needs to fill text fields*/
     public void buildSingleArray(ArrayList<String> build) {
         view.gettxtDD().setText(build.get(1));
         view.gettxtMM().setText(build.get(2));
