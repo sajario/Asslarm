@@ -34,7 +34,7 @@ public class Model extends Observable {
     
     /**
      *
-     * @param q
+     * @param q priority queue
      */
     public Model(PriorityQueue<Alarms> q) {
         heap = q;   
@@ -42,7 +42,7 @@ public class Model extends Observable {
     
     /**
      * @return boolean to see if it is indeed time for an alarm to go off
-     * @param al
+     * @param al passed next alarm
      */
     public boolean update(String al) {
         /*Get appropriate date and time elements from NOW*/
@@ -75,7 +75,7 @@ public class Model extends Observable {
     /**
      * 
      * @return time parts of head in array
-     * @throws QueueUnderflowException 
+     * @throws QueueUnderflowException to cover the head element if there is an issue 
      */
     public ArrayList<String> getHead() throws QueueUnderflowException{
         ArrayList<String> strarray = new ArrayList<String>();
@@ -158,7 +158,7 @@ public class Model extends Observable {
      * to compare the head and remove it without putting into array.  
      * Then the array builds back up into the heap
      * @param editable is the string for comparisons
-     * @return 
+     * @return returns array for combo box
      */
     public ArrayList<String> heaptoArray(String editable) {
         
@@ -304,7 +304,7 @@ public class Model extends Observable {
     
     /**
      * Used to create the PQ integer that will determine queue position
-     * @param dtt 
+     * @param dtt  passed new alarm
      */
     public void addAlarm(String dtt) {
         LocalDateTime now = LocalDateTime.now();
